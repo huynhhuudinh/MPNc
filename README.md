@@ -1,57 +1,60 @@
-# MPNc model: tái lập Application và mô phỏng soft-closure
+# MPNc model: Application reproduction and soft-closure simulation
 
-Kho mã này tái lập phần **Application** (Mục 7) của bài báo *Identifiability
-and Observational Equivalence in Soft-Closure Multinomial N-Mixture Models* trên
-dữ liệu Chestnut-sided Warbler (`cswa`), và cung cấp CLI mô phỏng (Mục 6) cho
-bốn mô hình MPN0, MPN1, MPNc và CRTE.
+This repository reproduces the **Application** (Section 7) of the paper
+*Identifiability and Observational Equivalence in Soft-Closure Multinomial
+N-Mixture Models* on the Chestnut-sided Warbler data (`cswa`), and provides a
+simulation CLI (Section 6) for the four models MPN0, MPN1, MPNc and CRTE.
 
-Toàn bộ phân tích được viết bằng Python; không cần cài R. Tệp nguồn `.rda` được
-đọc bằng gói `rdata` nếu đã cài, nếu không thì bằng bộ giải mã không phụ thuộc
-`rda_reader.py`; kiểm thử xác nhận hai cách cho cùng dữ liệu. Báo cáo chi tiết
-nằm trong [`APPLICATION_REPORT.md`](APPLICATION_REPORT.md).
+The whole analysis is written in Python; R is not required. The source `.rda`
+file is read with the `rdata` package when it is installed, and otherwise with
+the dependency-free decoder `rda_reader.py`; the tests confirm that both give
+the same data. The detailed report is in
+[`APPLICATION_REPORT.md`](APPLICATION_REPORT.md).
 
-## Trạng thái kết quả đi kèm
+## Status of the included results
 
-Kết quả gốc được tạo bằng Python 3.12.14 (NumPy 2.3.5, SciPy 1.17.0) và đã
-được chạy lại bằng Python 3.13.16 (NumPy 2.5.3, SciPy 1.18.1). Kết quả trong
-`results/` của gói này là từ lần chạy lại gần nhất, bằng Python 3.12.3
-(NumPy 2.2.6, SciPy 1.16.3) với bộ giải mã `rda_reader`
-(`results/run_manifest.json`), và trùng với các lần chạy trước đến ít nhất 6
-chữ số thập phân. Cả 8 phép khớp đều thành công; **77/77** con số của
-Mục 7 trong bản thảo (ước lượng, logLik, AIC, trọng số, khoảng tin cậy, chẩn
-đoán bậc ba, kiểm định composition, tổng diện tích) khớp sau làm tròn
+The original results were produced with Python 3.12.14 (NumPy 2.3.5,
+SciPy 1.17.0) and rerun with Python 3.13.16 (NumPy 2.5.3, SciPy 1.18.1). The
+results in `results/` come from the most recent rerun, with Python 3.12.3
+(NumPy 2.2.6, SciPy 1.16.3) and the `rda_reader` decoder
+(`results/run_manifest.json`), and agree with the earlier runs to at least 6
+decimal places. All 8 fits succeed; **77/77** numbers from Section 7 of the
+manuscript (estimates, logLik, AIC, weights, confidence intervals, third-order
+diagnostic, composition test, total area) match after rounding
 (`results/paper_comparison.csv`).
 
-| Phân tích | Mô hình tốt nhất theo AIC | AIC | Ước lượng abundance | `r` mỗi phút | Tham số phụ thuộc |
+| Analysis | Best model by AIC | AIC | Abundance estimate | `r` per minute | Dependence parameter |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Offset diện tích | MPNc | 353.666008 | 1.083596 cá thể/ha | 0.373167 | `c = 0.456632` |
-| Chỉ hệ số chặn | MPNc | 356.120210 | 0.589969 cá thể/điểm/lần | 0.371773 | `c = 0.456554` |
+| Area offset | MPNc | 353.666008 | 1.083596 individuals/ha | 0.373167 | `c = 0.456632` |
+| Intercept only | MPNc | 356.120210 | 0.589969 individuals/point/visit | 0.371773 | `c = 0.456554` |
 
-Đây là kết quả trên dữ liệu thực, không phải smoke test mô phỏng. Xem
-`results/verification_summary.json` để kiểm tra hội tụ và
-`results/paper_comparison.csv` để xem từng phép đối chiếu.
+These are results on the real data, not a simulation smoke test. See
+`results/verification_summary.json` for convergence checks and
+`results/paper_comparison.csv` for each individual comparison.
 
-## Cài đặt
+## Installation
 
-Các phiên bản thư viện dùng cho lần chạy đã giao được cố định trong
-`requirements.txt`. `rdata` và `xarray` là tùy chọn: thiếu chúng, mã tự dùng
-`rda_reader.py`.
+The library versions used for the included run are pinned in
+`requirements.txt`. `rdata` and `xarray` are optional: without them the code
+falls back to `rda_reader.py`.
 
 ```bash
-cd MPNc_model          # thư mục giải nén của gói
+git clone https://github.com/huynhhuudinh/MPNc.git
+cd MPNc
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Trên Windows, dùng `.venv\Scripts\activate` để kích hoạt môi trường. Các script
-xác định đường dẫn mặc định theo vị trí của chính script nên cũng có thể được
-gọi từ thư mục khác bằng đường dẫn tuyệt đối.
+On Windows, activate the environment with `.venv\Scripts\activate`. The scripts
+resolve their default paths from their own location, so they can also be called
+from another directory using an absolute path.
 
-## Chạy lại Application
+## Rerunning the Application
 
-Workflow đầy đủ gồm kiểm thử, chuẩn bị dữ liệu, khớp mô hình và dựng báo cáo:
+The full workflow runs the tests, prepares the data, fits the models and builds
+the report:
 
 ```bash
 python -m unittest -v test_application.py
@@ -59,167 +62,179 @@ python run_application.py --starts 8
 python build_report.py
 ```
 
-`run_application.py` chạy hai đặc tả (`area` và `intercept`) cho cả bốn mô hình.
-Các tùy chọn hiện có:
+`run_application.py` runs both specifications (`area` and `intercept`) for all
+four models. Available options:
 
 ```text
---data-dir PATH   thư mục chứa dữ liệu; mặc định là data/
---out PATH        thư mục kết quả; mặc định là results/
---download        tải lại ba tệp nguồn đã ghim và kiểm tra SHA-256
---prepare-only    chỉ kiểm tra và xuất dữ liệu chuẩn hóa, không khớp mô hình
---starts N        số điểm khởi đầu; mặc định là 8 và phải dương
+--data-dir PATH   data directory; default data/
+--out PATH        results directory; default results/
+--download        re-download the three pinned source files and check SHA-256
+--prepare-only    only check and export the standardized data; do not fit models
+--starts N        number of starting points; default 8, must be positive
 ```
 
-Ví dụ giữ nguyên bộ kết quả đã giao:
+To keep the included results untouched:
 
 ```bash
 python run_application.py --out results_new --starts 8
 python build_report.py --results results_new
 ```
 
-Lần chạy mới chỉ ghi đè các tệp đầu ra trùng tên trong thư mục đã chọn; không
-xóa các tệp khác ở đó. `build_report.py --results ...` đọc kết quả từ thư mục
-được chỉ định, tạo các bảng kiểm tra trong chính thư mục đó và luôn cập nhật
-`APPLICATION_REPORT.md` tại thư mục dự án.
+A new run only overwrites output files with the same names in the chosen
+directory; it does not delete other files there. `build_report.py --results ...`
+reads results from the given directory, writes the check tables into that same
+directory, and always updates `APPLICATION_REPORT.md` in the project directory.
 
-### Dữ liệu
+### Data
 
-`data/raw/` chứa `cswa.rda`, tài liệu `data_cswa.Rd`, metadata gói
-`DESCRIPTION` và `provenance.json`. Nguồn được ghim tại một commit của bản sao
-CRAN `AHMbook`; hash SHA-256 được kiểm tra trước mỗi lần đọc. Không cần mạng khi
-dùng các tệp đã có.
+`data/raw/` contains `cswa.rda`, its documentation `data_cswa.Rd`, the package
+metadata `DESCRIPTION` and `provenance.json`. The source is pinned to a commit
+of the CRAN mirror of `AHMbook`; SHA-256 hashes are checked before every read.
+No network access is needed when using the included files.
 
 ```bash
-# Tải lại nguồn đã ghim, kiểm tra hash rồi chạy phân tích
+# Re-download the pinned source, check the hashes, then run the analysis
 python run_application.py --download --starts 8
 
-# Chỉ xác minh nguồn và tái tạo data/*.csv, data/*.npz, data_audit.json
+# Only verify the source and regenerate data/*.csv, data/*.npz, data_audit.json
 python run_application.py --prepare-only
 ```
 
-Dữ liệu có 43 điểm, 3 lần khảo sát và các khoảng removal dài 2, 3, 5 phút. Có
-128 lượt khảo sát quan sát được; toàn bộ lần 1 của điểm `darty` bị thiếu và được
-loại khỏi likelihood. Trong `counts_long.csv`, hàng của lần thiếu vẫn được giữ
-với `count` trống và `observed=False`; trong `analysis_data.npz`, giá trị này vẫn
-là `NaN`, không bị đổi thành 0. Covariate diện tích được ghép theo `point_id`,
-không theo vị trí hàng.
+The data have 43 points, 3 visits and removal intervals of 2, 3 and 5 minutes.
+There are 128 observed visits; visit 1 of point `darty` is missing entirely and
+is excluded from the likelihood. In `counts_long.csv` the row for the missing
+visit is kept with an empty `count` and `observed=False`; in `analysis_data.npz`
+the value stays `NaN` and is not replaced by 0. The area covariate is joined by
+`point_id`, not by row position.
 
-Các tệp dữ liệu đã chuẩn hóa:
+Standardized data files:
 
-| Tệp | Nội dung |
+| File | Contents |
 | --- | --- |
-| `data/counts_long.csv` | Dữ liệu đếm dạng long, gồm cờ quan sát và diện tích điểm |
-| `data/site_covariates.csv` | Covariate theo điểm, đã căn chỉnh bằng định danh |
-| `data/spot_mapping.csv` | Dữ liệu spot-mapping theo patch |
-| `data/analysis_data.npz` | Mảng `y`, `area_ha` và `point_id` dùng trong phân tích |
-| `data/data_audit.json` | Trục dữ liệu, missingness, phép ghép, đơn vị và các tổng kiểm tra |
+| `data/counts_long.csv` | Counts in long format, with observation flag and plot area |
+| `data/site_covariates.csv` | Per-point covariates, aligned by identifier |
+| `data/spot_mapping.csv` | Spot-mapping data by patch |
+| `data/analysis_data.npz` | Arrays `y`, `area_ha` and `point_id` used in the analysis |
+| `data/data_audit.json` | Data axes, missingness, joins, units and check totals |
 
-### Mô hình và đơn vị
+### Models and units
 
-- **MPN0**: abundance ở các lần khảo sát độc lập; đây là working likelihood khi
-  dữ liệu thực tế có phụ thuộc. Sai số chuẩn chính dùng sandwich gom cụm theo
-  điểm.
-- **MPN1**: abundance đóng hoàn toàn qua các lần khảo sát.
-- **MPNc**: thành phần Poisson chung có mean `c * mu_i`, thành phần riêng có mean
-  `(1 - c) * mu_i`.
-- **CRTE**: superpopulation Poisson có mean `mu_i / phi`; availability độc lập
-  qua lần khảo sát với xác suất `phi`. `mu_i` là mean hiện diện trong một lần.
+- **MPN0**: abundance independent across visits; this is a working likelihood
+  when the real data are dependent. Its primary standard errors use the
+  point-clustered sandwich.
+- **MPN1**: abundance fully closed across visits.
+- **MPNc**: a shared Poisson component with mean `c * mu_i` and a visit-specific
+  component with mean `(1 - c) * mu_i`.
+- **CRTE**: a Poisson superpopulation with mean `mu_i / phi`; availability is
+  independent across visits with probability `phi`. `mu_i` is the mean number
+  present at a single visit.
 
-Trong phân tích `area`, `mu_i = rho * plotArea_i` và `rho` có đơn vị cá thể/ha.
-Trong phân tích `intercept`, `mu_i = mu` và đơn vị là cá thể/điểm/lần khảo sát.
-`r` luôn là xác suất phát hiện mỗi phút. Cột `dep` là `c` với MPNc, `phi` với
-CRTE, và được cố định lần lượt ở 0/1 cho MPN0/MPN1.
+In the `area` analysis, `mu_i = rho * plotArea_i` and `rho` is in
+individuals/ha. In the `intercept` analysis, `mu_i = mu` and the unit is
+individuals/point/visit. `r` is always the per-minute detection probability.
+The `dep` column is `c` for MPNc and `phi` for CRTE, and is fixed at 0 and 1 for
+MPN0 and MPN1 respectively.
 
-Likelihood được tính trên log-scale, giữ các hằng số factorial/multinomial để
-tái lập logLik và AIC tuyệt đối. Tổng trên abundance ẩn dùng ngưỡng đuôi và một
-phép kiểm tra chặt hơn; các giới hạn số nằm trong `FitConfig` của
-`softclosure.py`.
+Likelihoods are computed on the log scale and keep the factorial/multinomial
+constants so that absolute logLik and AIC values are reproduced. Sums over latent
+abundance use a tail threshold plus a stricter check; the numerical limits are
+set in `FitConfig` in `softclosure.py`.
 
-### Đầu ra Application
+### Application outputs
 
-| Tệp | Nội dung |
+| File | Contents |
 | --- | --- |
-| `results/model_results.csv` | Ước lượng, logLik, AIC, trọng số, SE, CI và chẩn đoán của 8 phép khớp |
-| `results/area_*.json` | Chi tiết từng mô hình cho đặc tả offset diện tích |
-| `results/intercept_*.json` | Chi tiết từng mô hình cho đặc tả chỉ hệ số chặn |
-| `results/site_loglik.csv` | Đóng góp log-likelihood theo điểm và mô hình |
-| `results/third_order.json` | Chẩn đoán residual bậc ba theo diện tích và bản pooled để audit |
-| `results/composition_gof.json` | Kiểm định độ phù hợp của composition removal (X², G², p bootstrap) |
-| `results/run_manifest.json` | Phiên bản phần mềm, cấu hình, nguồn dữ liệu và hash mã đã chạy |
-| `results/paper_comparison.csv` | Đối chiếu 77 con số của Mục 7 với dung sai làm tròn |
-| `results/confidence_intervals.csv` | CI log/logit và Wald trên thang tự nhiên, kèm loại covariance |
-| `results/verification_summary.json` | Tổng hợp hội tụ, độ ổn định số và phép đối chiếu |
-| `results/tests.log`, `results/run.log` | Nhật ký kiểm thử và lần chạy đã giao |
+| `results/model_results.csv` | Estimates, logLik, AIC, weights, SEs, CIs and diagnostics for the 8 fits |
+| `results/area_*.json` | Per-model details for the area-offset specification |
+| `results/intercept_*.json` | Per-model details for the intercept-only specification |
+| `results/site_loglik.csv` | Log-likelihood contribution by point and model |
+| `results/third_order.json` | Area-based third-order residual diagnostic and pooled version for audit |
+| `results/composition_gof.json` | Goodness-of-fit test of the removal composition (X², G², bootstrap p) |
+| `results/run_manifest.json` | Software versions, configuration, data source and hashes of the code that ran |
+| `results/paper_comparison.csv` | Comparison of 77 Section 7 numbers with rounding tolerances |
+| `results/confidence_intervals.csv` | Log/logit CIs and natural-scale Wald intervals, with covariance type |
+| `results/verification_summary.json` | Summary of convergence, numerical stability and comparisons |
+| `results/tests.log`, `results/run.log` | Logs of the included test run and analysis run |
 
-Trong JSON/CSV, tiền tố `mu_` từ mô-đun số dùng chung chỉ abundance đầu tiên:
-cần đọc là `rho` với phân tích `area` và `mu` với `intercept`.
-`confidence_intervals.csv` đã đổi tên tham số theo estimand. Trường `primary_se`
-cho biết covariance được chọn làm kết quả chính.
+In the JSON/CSV files, the `mu_` prefix from the shared numerical module refers
+to the first abundance parameter: read it as `rho` for the `area` analysis and
+`mu` for `intercept`. `confidence_intervals.csv` already renames parameters by
+estimand. The `primary_se` field indicates which covariance is reported as the
+primary result.
 
-## Chạy mô phỏng
+## Running the simulation
 
-`softclosure.py` vừa cung cấp các hàm số được `run_application.py` tái sử dụng,
-vừa là CLI mô phỏng độc lập cho thiết kế có các khoảng removal bằng nhau. Các
-suite hiện có là `smoke` (9 kịch bản), `core` (24), `reverse` (24), `small` (6),
-`stress` (6) và `full` (60).
+`softclosure.py` both provides the numerical functions reused by
+`run_application.py` and is a standalone simulation CLI for designs with equal
+removal intervals. Available suites are `smoke` (9 scenarios), `core` (24),
+`reverse` (24), `small` (6), `stress` (6) and `full` (60).
 
-Phần tổng hợp mô phỏng tạo biểu đồ PNG/PDF và cần thêm `matplotlib` (không nằm
-trong `requirements.txt` của workflow Application):
+The simulation summary produces PNG/PDF figures and additionally needs
+`matplotlib` (not in `requirements.txt`, which covers the Application workflow):
 
 ```bash
 python -m pip install matplotlib
 python softclosure.py run --suite smoke --reps 10 --workers 2 --out simulation_smoke
 ```
 
-Nếu bỏ `--reps`, mặc định là 10 cho `smoke` và 500 cho các suite khác. Có thể
-dùng `--seed`, `--starts`, `--maxiter` và `--no-intervals`; `--workers` phải từ
-1 đến 8. Mỗi replicate được ghi riêng dưới `OUT/replicates/`, cho phép tiếp tục
-một lần chạy dở nếu fingerprint của code, seed, scenario và cấu hình vẫn khớp.
-Không dùng lại cùng thư mục output khi thay một trong các thành phần đó.
+Without `--reps`, the default is 10 for `smoke` and 500 for the other suites.
+`--seed`, `--starts`, `--maxiter` and `--no-intervals` are also available;
+`--workers` must be between 1 and 8. Each replicate is written separately under
+`OUT/replicates/`, so an interrupted run can be resumed as long as the
+fingerprint of the code, seed, scenario and configuration still matches. Do not
+reuse the same output directory after changing any of these.
 
-Tạo lại bảng tổng hợp và hình từ các replicate đã hoàn tất, rồi dựng các bảng và
-hình dùng trong bài (Bảng tỷ lệ khớp, bảng chọn mô hình, ô sai đặc tả, hai hình
-`full_misspecification` và `full_model_selection`) vào `OUT/paper/`:
+Rebuild the summary tables and figures from the completed replicates, then build
+the tables and figures used in the paper (fit-rate table, model-selection
+tables, misspecification cell, and the two figures `full_misspecification` and
+`full_model_selection`) into `OUT/paper/`:
 
 ```bash
 python softclosure.py report --out simulation_smoke
 python paper_simulation_outputs.py --out simulation_smoke
 ```
 
-Lần chạy đầy đủ của bài: `python softclosure.py run --suite full --out simulation_full`
-(seed mặc định 20260910, 500 replicate, 3 điểm khởi đầu). Khoảng 1,5–4 giây cho
-mỗi bộ dữ liệu trên một lõi, tức vài giờ với 8 worker.
+The paper's full run: `python softclosure.py run --suite full --out simulation_full`
+(default seed 20260910, 500 replicates, 3 starting points). It takes about
+1.5–4 seconds per data set on one core, i.e. a few hours with 8 workers.
 
-Đầu ra mô phỏng gồm `manifest.json`, `fits.csv`, `parameter_summary.csv`,
+Simulation outputs are `manifest.json`, `fits.csv`, `parameter_summary.csv`,
 `model_selection.csv`, `selection_summary.csv`, `third_order.csv`,
-`third_order_summary.csv`, `run_summary.json` và các hình `rmse_*` ở định dạng
-PNG/PDF. Smoke suite chỉ dùng để kiểm tra đường chạy, không phải bằng chứng mô
-phỏng đầy đủ.
+`third_order_summary.csv`, `run_summary.json` and the `rmse_*` figures in PNG/PDF
+format. The smoke suite only checks that the pipeline runs; it is not full
+simulation evidence.
 
-## Cấu trúc mã
+The included `simulation_full/` holds the aggregated outputs of the paper's full
+run. The 30,000 per-replicate files in `simulation_full/replicates/` (about 186 MB) are
+not included in this repository; their contents are aggregated in `fits.csv`,
+`model_selection.csv` and `third_order.csv`, and they can be regenerated with the
+command above.
 
-| Tệp | Vai trò |
+## Code layout
+
+| File | Role |
 | --- | --- |
-| `run_application.py` | Xác minh nguồn, chuẩn hóa dữ liệu, khớp 8 mô hình, chẩn đoán bậc ba, kiểm định composition |
-| `rda_reader.py` | Bộ giải mã `.rda` (RDX2/RDX3, XDR) không phụ thuộc gói ngoài |
-| `softclosure.py` | Likelihood/lõi số dùng chung và CLI mô phỏng có thể resume |
-| `paper_simulation_outputs.py` | Dựng bảng và hình mô phỏng của bài từ thư mục kết quả |
-| `test_application.py` | 10 kiểm thử: xác suất removal, trục dữ liệu, missingness, bốn likelihood so với tổng multinomial gốc, bộ giải mã độc lập, kiểm định composition, profile working |
-| `build_report.py` | Đối chiếu 77 con số với bài, dựng bảng CI, verification summary và báo cáo Markdown |
-| `PACKAGE_MANIFEST.json` | Snapshot kích thước và SHA-256 của các tệp được giao, gồm cả `simulation_full/` (trừ 30.000 tệp trong `simulation_full/replicates/`, chỉ ghi số lượng và tổng dung lượng) |
-| `LICENSE` | Giấy phép GPL-3.0-or-later |
+| `run_application.py` | Source verification, data standardization, the 8 model fits, third-order diagnostic, composition test |
+| `rda_reader.py` | Dependency-free `.rda` decoder (RDX2/RDX3, XDR) |
+| `softclosure.py` | Shared likelihood/numerical core and resumable simulation CLI |
+| `paper_simulation_outputs.py` | Builds the paper's simulation tables and figures from a results directory |
+| `test_application.py` | 10 tests: removal probabilities, data axes, missingness, the four likelihoods against the brute-force multinomial sum, the independent decoder, the composition test, the working profile |
+| `build_report.py` | Checks 77 numbers against the paper, builds the CI table, verification summary and Markdown report |
+| `PACKAGE_MANIFEST.json` | Snapshot of sizes and SHA-256 hashes of the delivered files, including `simulation_full/` (except the 30,000 files in `simulation_full/replicates/`, for which only the count and total size are recorded) |
+| `LICENSE` | GPL-3.0-or-later license |
 
-## Phạm vi và diễn giải
+## Scope and interpretation
 
-Workflow Application chỉ tái lập hai đặc tả intercept/area; chưa thêm covariate
-thời gian, ngày, người quan sát, habitat, hiệu ứng patch hay overdispersion. Dữ
-liệu không có định danh cá thể nên `c` không trực tiếp chứng minh cùng một cá
-thể quay lại. Phân tích xem 43 điểm là độc lập như bài báo, dù các điểm thuộc 38
-patch; giả định này chưa được kiểm tra ở đây. Trọng số AIC không phải xác suất
-một cơ chế sinh học là đúng.
+The Application workflow only reproduces the intercept and area specifications;
+it does not add covariates for time, date, observer, habitat, patch effects or
+overdispersion. The data have no individual identities, so `c` does not directly
+show that the same individuals return. As in the paper, the analysis treats the
+43 points as independent even though they belong to 38 patches; this assumption
+is not tested here. AIC weights are not probabilities that a biological mechanism
+is true.
 
-Nguồn dữ liệu ghi công David King và cộng sự; tài liệu nguồn dẫn Chandler, King
-& Chandler (2009), Chandler, Royle & King (2011), và Kéry & Royle (2021). Gói
-AHMbook khai báo GPL (>= 3); khi phân phối lại cần giữ các tệp và provenance
-trong `data/raw/`. Mã Python của dự án được cung cấp theo GPL-3.0-or-later; xem
-`LICENSE`.
+The data source credits David King and colleagues; the source documentation
+cites Chandler, King & Chandler (2009), Chandler, Royle & King (2011), and Kéry &
+Royle (2021). The AHMbook package is licensed GPL (>= 3); redistribution must
+keep the files and provenance in `data/raw/`. The project's Python code is
+provided under GPL-3.0-or-later; see `LICENSE`.

@@ -2,13 +2,13 @@
  "files": [
   {
    "path": "APPLICATION_REPORT.md",
-   "bytes": 6558,
-   "sha256": "9837e83b104c2bba0a61dfa0a69cc74c7c70b9b98c2995a752da2415bf57d4dd"
+   "bytes": 5974,
+   "sha256": "a80eedc05c5677175d367ee617a01e92005757d134e364f42a0accc75a050a54"
   },
   {
    "path": "CHANGES.md",
-   "bytes": 3651,
-   "sha256": "2ee41de6860c03a496c78b9eda169f6244d1be2d17760ce6cd0c56db14993f40"
+   "bytes": 3986,
+   "sha256": "cfe13a038947769226685561096598ccefe9cfd6ef4f9f5598efe43262d30565"
   },
   {
    "path": "LICENSE",
@@ -17,13 +17,13 @@
   },
   {
    "path": "README.md",
-   "bytes": 12819,
-   "sha256": "06568c0a6bdd62d412658636f49cd5dd3f096d19a3344a1d9a650dc5a1651f69"
+   "bytes": 11988,
+   "sha256": "346d9544e519e3569ee16616aeae3aa28916880bb6521310e71e26554b174db1"
   },
   {
    "path": "build_report.py",
-   "bytes": 17019,
-   "sha256": "d059aef0d6ee6abbbc510bfa7acb6bc422b59cf8d0fc81b03e496eeaf409e6ff"
+   "bytes": 16461,
+   "sha256": "bfd4d8652f0e2fa13d7fd7631acfe76a9e09a146509e55b8c83d651d56015f1b"
   },
   {
    "path": "data/analysis_data.npz",

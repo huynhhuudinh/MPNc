@@ -161,78 +161,78 @@ def main():
     tab_main = table([[f['model'], f"{f['loglik']:.6f}", f"{f['aic']:.6f}", f"{f['delta_aic']:.6f}",
                        f"{f['akaike_weight']:.6f}", f"{f['estimate']:.6f}", f"{f['r']:.6f}", dep(f)]
                       for f in primary],
-                     ['Mô hình', 'logLik', 'AIC', 'ΔAIC', 'Trọng số', 'Mật độ/ha', 'r mỗi phút', 'c hoặc φ'])
+                     ['Model', 'logLik', 'AIC', 'ΔAIC', 'Weight', 'Density/ha', 'r per minute', 'c or φ'])
     tab_sens = table([[f['model'], f"{f['aic']:.6f}", f"{f['akaike_weight']:.6f}", f"{f['estimate']:.6f}",
                        f"{f['r']:.6f}", dep(f)] for f in sens],
-                     ['Mô hình', 'AIC', 'Trọng số', 'Số cá thể/điểm/lần', 'r mỗi phút', 'c hoặc φ'])
+                     ['Model', 'AIC', 'Weight', 'Individuals/point/visit', 'r per minute', 'c or φ'])
     prim = intervals[intervals.primary & (intervals.analysis == 'area')]
     tab_ci = table([[r.model, r.parameter, f"{r.estimate:.3f}", r.covariance,
                      f"({r.transformed_lower:.3f}, {r.transformed_upper:.3f})"]
                     for r in prim.itertuples()],
-                   ['Mô hình', 'Tham số', 'Ước lượng', 'Hiệp phương sai', 'CI 95% (log/logit)'])
+                   ['Model', 'Parameter', 'Estimate', 'Covariance', '95% CI (log/logit)'])
     m0 = fits['area', 'MPN0']
     ratio_rho = m0['mu_se_cluster'] / m0['mu_se_model']
     ratio_r = m0['r_se_cluster'] / m0['r_se_model']
     joins = ', '.join(f"`{m['counts_id']}`" for m in audit['alignment_mismatches_corrected'])
     c, crte, m1 = fits['area', 'MPNc'], fits['area', 'CRTE'], fits['area', 'MPN1']
     spot = audit['spot_density']
-    status = ('Tất cả khớp.' if mismatches.empty else
-              f"**{len(mismatches)} giá trị không khớp:** " +
+    status = ('All match.' if mismatches.empty else
+              f"**{len(mismatches)} values do not match:** " +
               ', '.join(f"{r.analysis}/{r.model}/{r.quantity}" for r in mismatches.itertuples()))
-    report = f'''# Kết quả tái lập phần Application
+    report = f'''# Application reproduction results
 
-Đã chạy **8 phép khớp: 4 mô hình × 2 cách mô hình hóa abundance** trên dữ liệu thực. {diagnostics['fits_successful']}/{diagnostics['fits_total']} phép khớp thành công. Đã đối chiếu {len(comparison)} con số in trong Mục 7 của bản thảo (ước lượng, logLik, AIC, trọng số, khoảng tin cậy, chẩn đoán bậc ba, kiểm định composition, tổng diện tích): {int(comparison.matches_rounding.sum())}/{len(comparison)} khớp sau làm tròn. {status} {best} có AIC nhỏ nhất ở phân tích chính; {best_sens} ở phân tích chỉ có hệ số chặn.
+Ran **8 fits: 4 models × 2 abundance specifications** on the real data. {diagnostics['fits_successful']}/{diagnostics['fits_total']} fits succeeded. Checked {len(comparison)} numbers printed in Section 7 of the manuscript (estimates, logLik, AIC, weights, confidence intervals, third-order diagnostic, composition test, total area): {int(comparison.matches_rounding.sum())}/{len(comparison)} match after rounding. {status} {best} has the smallest AIC in the primary analysis; {best_sens} in the intercept-only analysis.
 
-## Dữ liệu
+## Data
 
-Nguồn: [AHMbook cswa.rda]({link}), commit `{source['commit']}`; [tài liệu dữ liệu]({doc}). Bản gốc, tài liệu, SHA-256 và nguồn nằm trong `data/raw/`. Bộ giải mã dùng ở lần chạy này: `{manifest.get('rda_decoder', 'rdata')}`.
+Source: [AHMbook cswa.rda]({link}), commit `{source['commit']}`; [data documentation]({doc}). The original file, documentation, SHA-256 hashes and provenance are in `data/raw/`. Decoder used in this run: `{manifest.get('rda_decoder', 'rdata')}`.
 
-- {audit['sites']} điểm; {audit['observed_visits']} lần khảo sát quan sát được; {audit['complete_sites']} điểm đủ 3 lần. Lần thiếu ({', '.join(f"`{m['point_id']}` lần {m['visit']}" for m in audit['missing_visits'])}) được loại khỏi likelihood, không mã hóa thành 0.
-- Mảng nguồn có trục điểm × khoảng × lần; mã chuyển thành điểm × lần × khoảng.
-- Diện tích được ghép theo tên điểm. Các điểm có thứ tự khác giữa bảng đếm và bảng covariate: {joins}.
-- Khoảng dài {', '.join(f'{d:g}' for d in audit['intervals_minutes'])} phút; số phát hiện lần đầu theo khoảng {audit['counts_per_interval']}, tổng {audit['total_detections']} lượt phát hiện (không phải số cá thể riêng biệt).
-- Tổng diện tích điểm {audit['sum_plot_area_ha']:.2f} ha; exposure quan sát {audit['observed_area_exposure_ha_visits']:.2f} ha-lần.
-- Spot-mapping: {audit['spot_patches']} patch, {audit['spot_count']} cá thể trên {audit['spot_area_ha']:.2f} ha = **{spot:.6f} cá thể/ha** (chỉ dùng để mô tả, không vào likelihood).
+- {audit['sites']} points; {audit['observed_visits']} observed visits; {audit['complete_sites']} points with all 3 visits. Missing visits ({', '.join(f"`{m['point_id']}` visit {m['visit']}" for m in audit['missing_visits'])}) are excluded from the likelihood, not coded as 0.
+- The source array has axes point × interval × visit; the code reshapes it to point × visit × interval.
+- Plot areas are joined by point name. Points whose order differs between the count table and the covariate table: {joins}.
+- Interval lengths {', '.join(f'{d:g}' for d in audit['intervals_minutes'])} minutes; first detections per interval {audit['counts_per_interval']}, total {audit['total_detections']} detections (not distinct individuals).
+- Total plot area {audit['sum_plot_area_ha']:.2f} ha; observed exposure {audit['observed_area_exposure_ha_visits']:.2f} ha-visits.
+- Spot-mapping: {audit['spot_patches']} patches, {audit['spot_count']} individuals over {audit['spot_area_ha']:.2f} ha = **{spot:.6f} individuals/ha** (descriptive only; not used in the likelihood).
 
-## Phân tích chính với offset diện tích
+## Primary analysis with an area offset
 
-Đặt $\\mu_i=\\rho A_i$. Với CRTE, cột mật độ là mật độ hiện diện trong một lần khảo sát $\\nu_i/A_i$.
+Set $\\mu_i=\\rho A_i$. For CRTE, the density column is the per-visit present density $\\nu_i/A_i$.
 
 {tab_main}
 
-{c['model']} ước tính $\\widehat\\rho={c['estimate']:.6f}$ cá thể/ha, chênh {100*(c['estimate']/spot-1):+.2f}% so với spot-mapping; $\\widehat c={c['dep']:.6f}$; xác suất phát hiện tích lũy 10 phút {c['cumulative_detection']:.6f}. CRTE: mật độ hiện diện {crte['estimate']:.6f}, $\\widehat\\phi={crte['dep']:.6f}$, mật độ superpopulation {crte['superpopulation_estimate']:.6f} (CI log {crte['superpopulation_lo']:.3f}–{crte['superpopulation_hi']:.3f}); đây là estimand khác. MPN1: mật độ {m1['estimate']:.6f} ({100*(m1['estimate']/spot-1):+.1f}% so với spot-mapping), r = {m1['r']:.6f}.
+{c['model']} estimates $\\widehat\\rho={c['estimate']:.6f}$ individuals/ha, {100*(c['estimate']/spot-1):+.2f}% relative to spot-mapping; $\\widehat c={c['dep']:.6f}$; 10-minute cumulative detection probability {c['cumulative_detection']:.6f}. CRTE: present density {crte['estimate']:.6f}, $\\widehat\\phi={crte['dep']:.6f}$, superpopulation density {crte['superpopulation_estimate']:.6f} (log CI {crte['superpopulation_lo']:.3f}–{crte['superpopulation_hi']:.3f}); this is a different estimand. MPN1: density {m1['estimate']:.6f} ({100*(m1['estimate']/spot-1):+.1f}% relative to spot-mapping), r = {m1['r']:.6f}.
 
-## Khoảng tin cậy
+## Confidence intervals
 
-CI chính được dựng trên thang log (mật độ) hoặc logit (xác suất) rồi biến đổi ngược, đúng như mô tả trong bản thảo. `confidence_intervals.csv` giữ thêm Wald trên thang gốc chỉ để đối chiếu.
+Primary CIs are built on the log (density) or logit (probability) scale and back-transformed, as described in the manuscript. `confidence_intervals.csv` also keeps natural-scale Wald intervals for comparison only.
 
 {tab_ci}
 
-MPN0 dùng sandwich gom cụm theo điểm; các mô hình khác dùng nghịch đảo observed information. Tỷ số SE sandwich/SE information của MPN0 là {ratio_rho:.3f} cho mật độ và {ratio_r:.3f} cho r: phụ thuộc giữa các lần làm tăng chủ yếu phương sai của abundance, phù hợp với Corollary về hiệu chỉnh hạng một (đây là quan sát mô tả; thiết kế có offset nên công thức cân bằng không áp dụng chính xác).
+MPN0 uses the point-clustered sandwich; the other models use the inverse observed information. For MPN0, the sandwich/information SE ratio is {ratio_rho:.3f} for density and {ratio_r:.3f} for r: dependence between visits inflates mainly the variance of abundance, consistent with the Corollary on the rank-one correction (this is a descriptive observation; the design has an offset, so the balanced formula does not apply exactly).
 
-## Kiểm định thành phần removal
+## Removal composition test
 
-Gộp qua các lần quan sát, số đếm theo khoảng là $\\mathrm{{Multinomial}}(\\sum d;\\mathbf q(r))$ dưới mọi mô hình ứng viên. $\\widehat r$ từ composition = {gof['r_composition_mle']:.6f}; kỳ vọng ({', '.join(f'{e:.2f}' for e in gof['expected'])}) so với quan sát {gof['observed']}. Pearson $X^2={gof['pearson_x2']:.3f}$ (p = {gof['pearson_p']:.4f}), $G^2={gof['likelihood_ratio_g2']:.3f}$ (p = {gof['likelihood_ratio_p']:.4f}), {gof['df']} bậc tự do; p bootstrap tham số cho $G^2$ ({gof['bootstrap_draws']} lần, seed {gof['bootstrap_seed']}) = {gof['likelihood_ratio_bootstrap_p']:.4f}. Mô hình hazard hằng khớp kém với composition gộp, gợi ý dị biệt khả năng phát hiện.
+Pooled over the observed visits, the interval counts are $\\mathrm{{Multinomial}}(\\sum d;\\mathbf q(r))$ under every candidate model. Composition $\\widehat r$ = {gof['r_composition_mle']:.6f}; expected ({', '.join(f'{e:.2f}' for e in gof['expected'])}) versus observed {gof['observed']}. Pearson $X^2={gof['pearson_x2']:.3f}$ (p = {gof['pearson_p']:.4f}), $G^2={gof['likelihood_ratio_g2']:.3f}$ (p = {gof['likelihood_ratio_p']:.4f}), {gof['df']} degree{'' if gof['df'] == 1 else 's'} of freedom; parametric bootstrap p for $G^2$ ({gof['bootstrap_draws']} draws, seed {gof['bootstrap_seed']}) = {gof['likelihood_ratio_bootstrap_p']:.4f}. The constant-hazard model fits the pooled composition poorly, suggesting heterogeneity in detectability.
 
-## Chẩn đoán bậc ba
+## Third-order diagnostic
 
-Tỷ số residual theo diện tích trên {third['complete_sites']} điểm đủ ba lần: {third['models']['MPNc']['area_residual_ratio']:.6f} khi dùng ước lượng MPNc (dự đoán $\\widehat c$ = {third['models']['MPNc']['predicted_ratio']:.6f}); {third['models']['CRTE']['area_residual_ratio']:.6f} khi dùng ước lượng CRTE (dự đoán $\\widehat\\phi^2$ = {third['models']['CRTE']['predicted_ratio']:.6f}). Bản gộp trừ trung bình theo lần (chỉ để audit): {third['models']['MPNc']['pooled_ratio_using_mean_mu']:.6f}. Đây là thống kê mô tả, không phải kiểm định.
+Area-based residual ratio over the {third['complete_sites']} points with all three visits: {third['models']['MPNc']['area_residual_ratio']:.6f} using the MPNc estimates (predicted $\\widehat c$ = {third['models']['MPNc']['predicted_ratio']:.6f}); {third['models']['CRTE']['area_residual_ratio']:.6f} using the CRTE estimates (predicted $\\widehat\\phi^2$ = {third['models']['CRTE']['predicted_ratio']:.6f}). Pooled version with per-visit means subtracted (audit only): {third['models']['MPNc']['pooled_ratio_using_mean_mu']:.6f}. This is a descriptive statistic, not a test.
 
-## Phân tích độ nhạy: chỉ có hệ số chặn
+## Sensitivity analysis: intercept only
 
-Cột abundance có đơn vị cá thể/điểm/lần khảo sát.
+The abundance column is in individuals/point/visit.
 
 {tab_sens}
 
-## Kiểm tra số
+## Numerical checks
 
-{converged}/{attempts} lần tối ưu hội tụ; {diagnostics['intervals_available']}/{diagnostics['fits_total']} phép khớp có CI. Chênh log-likelihood lớn nhất giữa các điểm khởi đầu {maxspread:.3g}; |score| lớn nhất tại nghiệm {maxgrad:.3g}; thay đổi logLik khi siết ngưỡng cắt đuôi từ $10^{{-12}}$ xuống $10^{{-14}}$ và thêm 16 số hạng: {maxtail:.3g}. Đây là kiểm tra số, không phải chứng minh tối ưu toàn cục.
+{converged}/{attempts} optimizer runs converged; {diagnostics['intervals_available']}/{diagnostics['fits_total']} fits have CIs. Largest log-likelihood spread across starting points {maxspread:.3g}; largest |score| at the solution {maxgrad:.3g}; logLik change when tightening the tail truncation threshold from $10^{{-12}}$ to $10^{{-14}}$ and adding 16 terms: {maxtail:.3g}. These are numerical checks, not a proof of global optimality.
 
-`results/paper_comparison.csv` liệt kê từng phép đối chiếu với dung sai làm tròn; `results/run_manifest.json` lưu phiên bản phần mềm, cấu hình và hash; `results/site_loglik.csv` lưu đóng góp theo điểm.
+`results/paper_comparison.csv` lists every comparison with its rounding tolerance; `results/run_manifest.json` records software versions, configuration and hashes; `results/site_loglik.csv` stores per-point contributions.
 
-## Phạm vi
+## Scope
 
-Các điểm được coi là độc lập dù thuộc {audit['spot_patches']} patch. Trọng số AIC không phải xác suất cơ chế sinh học đúng; dữ liệu không có định danh cá thể nên $c$ không xác nhận trực tiếp cá thể quay lại.
+Points are treated as independent even though they belong to {audit['spot_patches']} patches. AIC weights are not probabilities that a biological mechanism is true; the data have no individual identities, so $c$ does not directly confirm that individuals return.
 '''
     (ROOT / 'APPLICATION_REPORT.md').write_text(report, encoding='utf-8')
     print(json.dumps(diagnostics, indent=2))
