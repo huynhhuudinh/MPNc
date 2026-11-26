@@ -1,0 +1,25 @@
+{
+  "retrieved_utc": "2026-09-10T23:19:56.365613+00:00",
+  "repository": "https://github.com/cran/AHMbook",
+  "commit": "8c006b16dae02d30a174c0dc754488c542e54b64",
+  "files": [
+    {
+      "url": "https://raw.githubusercontent.com/cran/AHMbook/8c006b16dae02d30a174c0dc754488c542e54b64/data/cswa.rda",
+      "filename": "cswa.rda",
+      "sha256": "cafa6b16e5cab1174fde6fa9195d74bbe47562e570d7727fdd7786d5b27743fa",
+      "bytes": 1946
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cran/AHMbook/8c006b16dae02d30a174c0dc754488c542e54b64/DESCRIPTION",
+      "filename": "DESCRIPTION",
+      "sha256": "46190cb97432907e857e392331d995943dfb566f3e63ee1126e8305e39c0019e",
+      "bytes": 6788
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cran/AHMbook/8c006b16dae02d30a174c0dc754488c542e54b64/man/data_cswa.Rd",
+      "filename": "data_cswa.Rd",
+      "sha256": "df62ecc0afbfd9f369b141cc266cb5b13c02da1ee46b69d5e764bb4c143ee521",
+      "bytes": 3098
+    }
+  ]
+}

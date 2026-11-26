@@ -1,0 +1,78 @@
+{
+  "model": "MPN0",
+  "estimate": 1.0865206446546893,
+  "r": 0.3731910099084373,
+  "dep": 0.0,
+  "x": [
+    0.08298052159658992,
+    -0.5185514737407806
+  ],
+  "boundary": null,
+  "loglik": -189.69000388203978,
+  "k": 2,
+  "aic": 383.38000776407955,
+  "cumulative_detection": 0.9906383550146867,
+  "truncation_loglik_change": 0.0,
+  "truncation_max_site_change": 0.0,
+  "attempts": [
+    {
+      "initial_x": [
+        0.08298052159658992,
+        -0.5185514737407806
+      ],
+      "x": [
+        0.08298052159658992,
+        -0.5185514737407806
+      ],
+      "nll": 189.69000388203978,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 1.3073986337985843e-07
+    }
+  ],
+  "boundary_checks": [],
+  "starts_nll_spread": 0.0,
+  "optimization_bound": false,
+  "interval_valid": true,
+  "primary_se": "cluster",
+  "success": true,
+  "information_condition": 2.3497590523732836,
+  "score_max_abs": 5.000072555993995e-07,
+  "mu_se_model": 0.125643003806724,
+  "mu_lo_model": 0.8661772917628212,
+  "mu_hi_model": 1.3629162556989505,
+  "r_se_model": 0.04131488845974066,
+  "r_lo_model": 0.2963540291728614,
+  "r_hi_model": 0.45701080569227404,
+  "mu_se_cluster": 0.18899779707568515,
+  "mu_lo_cluster": 0.7726332759439075,
+  "mu_hi_cluster": 1.527926828958564,
+  "r_se_cluster": 0.04196558177914796,
+  "r_lo_cluster": 0.29521839070964206,
+  "r_hi_cluster": 0.4583640506885894,
+  "covariance_x_model": [
+    [
+      0.013372132037455978,
+      -0.001100141674430226
+    ],
+    [
+      -0.001100141674430226,
+      0.0311946695464844
+    ]
+  ],
+  "covariance_x_cluster": [
+    [
+      0.030257811920398465,
+      -0.009503353158714197
+    ],
+    [
+      -0.009503353158714199,
+      0.03218501505624093
+    ]
+  ],
+  "seconds": 0.0020771400013472885,
+  "analysis": "area",
+  "estimand": "visit_density_birds_per_ha",
+  "delta_aic": 29.714000241362157,
+  "akaike_weight": 3.3546097422676936e-07
+}

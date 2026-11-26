@@ -1,0 +1,74 @@
+{
+  "sites": 43,
+  "visits_per_site": 3,
+  "intervals_minutes": [
+    2.0,
+    3.0,
+    5.0
+  ],
+  "observed_visits": 128,
+  "complete_sites": 42,
+  "missing_visits": [
+    {
+      "point_id": "darty",
+      "visit": 1
+    }
+  ],
+  "count_axis_original": [
+    "point",
+    "interval",
+    "occasion"
+  ],
+  "count_axis_analysis": [
+    "point",
+    "occasion",
+    "interval"
+  ],
+  "alignment_mismatches_corrected": [
+    {
+      "position": 41,
+      "counts_id": "zeala",
+      "covariates_id": "zeal4a"
+    },
+    {
+      "position": 42,
+      "counts_id": "zealb",
+      "covariates_id": "zeala"
+    },
+    {
+      "position": 43,
+      "counts_id": "zeal4a",
+      "covariates_id": "zealb"
+    }
+  ],
+  "counts_per_interval": [
+    51,
+    14,
+    10
+  ],
+  "total_detections": 75,
+  "maximum_visit_total": 3,
+  "plot_area_units": "ha",
+  "sum_plot_area_ha": 23.37,
+  "observed_area_exposure_ha_visits": 69.67999999999999,
+  "spot_patches": 38,
+  "spot_count": 74,
+  "spot_area_ha": 66.69000000000001,
+  "spot_density": 1.1096116359274253
+}
+Fitting area/MPN0 ...
+  logLik=-189.690003882; AIC=383.380007764; estimate=1.086520645; r=0.373191010; dep=0.000000000; success=True
+Fitting area/MPN1 ...
+  logLik=-203.614175129; AIC=411.228350259; estimate=2.031182251; r=0.086074444; dep=1.000000000; success=True
+Fitting area/MPNc ...
+  logLik=-173.833003761; AIC=353.666007523; estimate=1.083596204; r=0.373166821; dep=0.456631952; success=True
+Fitting area/CRTE ...
+  logLik=-176.788168045; AIC=359.576336091; estimate=1.088155595; r=0.373191011; dep=0.424957334; success=True
+Fitting intercept/MPN0 ...
+  logLik=-188.871619533; AIC=381.743239067; estimate=0.591474676; r=0.373191010; dep=0.000000000; success=True
+Fitting intercept/MPN1 ...
+  logLik=-203.422151825; AIC=410.844303650; estimate=1.100106140; r=0.086601496; dep=1.000000000; success=True
+Fitting intercept/MPNc ...
+  logLik=-175.060105107; AIC=356.120210215; estimate=0.589968646; r=0.371772510; dep=0.456554064; success=True
+Fitting intercept/CRTE ...
+  logLik=-176.695735843; AIC=359.391471687; estimate=0.591729341; r=0.373191008; dep=0.427994452; success=True

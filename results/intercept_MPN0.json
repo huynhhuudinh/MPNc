@@ -1,0 +1,78 @@
+{
+  "model": "MPN0",
+  "estimate": 0.5914746759338964,
+  "r": 0.3731910099084373,
+  "dep": 0.0,
+  "x": [
+    -0.5251364097787802,
+    -0.5185514737407806
+  ],
+  "boundary": null,
+  "loglik": -188.8716195333733,
+  "k": 2,
+  "aic": 381.7432390667466,
+  "cumulative_detection": 0.9906383550146867,
+  "truncation_loglik_change": 0.0,
+  "truncation_max_site_change": 0.0,
+  "attempts": [
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806
+      ],
+      "x": [
+        -0.5251364097787802,
+        -0.5185514737407806
+      ],
+      "nll": 188.8716195333733,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 1.2647660696529783e-07
+    }
+  ],
+  "boundary_checks": [],
+  "starts_nll_spread": 0.0,
+  "optimization_bound": false,
+  "interval_valid": true,
+  "primary_se": "cluster",
+  "success": true,
+  "information_condition": 2.3497589531009924,
+  "score_max_abs": 4.999611791234315e-07,
+  "mu_se_model": 0.06839691021961952,
+  "mu_lo_model": 0.4715252631684888,
+  "mu_hi_model": 0.7419375367510256,
+  "r_se_model": 0.04131488756013805,
+  "r_lo_model": 0.29635403074466204,
+  "r_hi_model": 0.4570108038218069,
+  "mu_se_cluster": 0.10135767176013523,
+  "mu_lo_cluster": 0.4227372891841295,
+  "mu_hi_cluster": 0.8275643081931404,
+  "r_se_cluster": 0.041965580072021315,
+  "r_lo_cluster": 0.29521839368572766,
+  "r_hi_cluster": 0.45836404713746837,
+  "covariance_x_model": [
+    [
+      0.013372132046188987,
+      -0.0011001417742882381
+    ],
+    [
+      -0.001100141774288238,
+      0.031194668188000464
+    ]
+  ],
+  "covariance_x_cluster": [
+    [
+      0.029365739510630803,
+      -0.00947228631936931
+    ],
+    [
+      -0.00947228631936931,
+      0.03218501243771912
+    ]
+  ],
+  "seconds": 0.0015755640051793307,
+  "analysis": "intercept",
+  "estimand": "visit_abundance_birds_per_point",
+  "delta_aic": 25.62302885194009,
+  "akaike_weight": 2.2841418485485212e-06
+}

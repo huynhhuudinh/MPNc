@@ -1,0 +1,16 @@
+{
+  "complete_sites": 42,
+  "pooled_third_central_moment": 0.2165802829068135,
+  "models": {
+    "MPNc": {
+      "area_residual_ratio": 0.3322017275570136,
+      "predicted_ratio": 0.4566319520820548,
+      "pooled_ratio_using_mean_mu": 0.3764147686478511
+    },
+    "CRTE": {
+      "area_residual_ratio": 0.3263033702934417,
+      "predicted_ratio": 0.1805887357604467,
+      "pooled_ratio_using_mean_mu": 0.3748334823012673
+    }
+  }
+}

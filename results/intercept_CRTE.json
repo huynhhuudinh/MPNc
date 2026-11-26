@@ -1,0 +1,225 @@
+{
+  "model": "CRTE",
+  "estimate": 0.5917293412176879,
+  "r": 0.37319100835204894,
+  "dep": 0.4279944523235126,
+  "x": [
+    -0.5247059425321642,
+    -0.5185514803943024,
+    -0.2900384564310439
+  ],
+  "boundary": null,
+  "loglik": -176.69573584349635,
+  "k": 3,
+  "aic": 359.3914716869927,
+  "cumulative_detection": 0.9906383547822338,
+  "truncation_loglik_change": 0.0,
+  "truncation_max_site_change": 0.0,
+  "attempts": [
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806,
+        -1.3862943611198906
+      ],
+      "x": [
+        -0.5247059701192812,
+        -0.5185514696359718,
+        -0.2900384878479499
+      ],
+      "nll": 176.6957358434964,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 4.263256414560601e-09
+    },
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806,
+        0.0
+      ],
+      "x": [
+        -0.5247059702770486,
+        -0.5185514694992164,
+        -0.2900384871092361
+      ],
+      "nll": 176.6957358434964,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 9.947598300641403e-09
+    },
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806,
+        1.3862943611198908
+      ],
+      "x": [
+        -0.5247059425321642,
+        -0.5185514803943024,
+        -0.2900384564310439
+      ],
+      "nll": 176.69573584349635,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "gradient_max_abs": 1.0231815394945443e-06
+    },
+    {
+      "initial_x": [
+        0.03530560090026218,
+        -2.4423470353692043,
+        -0.8472978603872037
+      ],
+      "x": [
+        -0.5247059685755406,
+        -0.5185514665500841,
+        -0.2900385033173816
+      ],
+      "nll": 176.69573584349635,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 1.5347723092418164e-07
+    },
+    {
+      "initial_x": [
+        -0.38668227201503774,
+        -1.5163474893680886,
+        0.8472978603872034
+      ],
+      "x": [
+        -0.5247059705900584,
+        -0.5185514691152159,
+        -0.2900384880432873
+      ],
+      "nll": 176.69573584349635,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 2.2737367544323203e-08
+    },
+    {
+      "initial_x": [
+        -0.5344372872853642,
+        0.4054651081081643,
+        0.0
+      ],
+      "x": [
+        -0.524705971128859,
+        -0.5185514702975363,
+        -0.2900384860291356
+      ],
+      "nll": 176.6957358434964,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 5.258016244624741e-08
+    },
+    {
+      "initial_x": [
+        -0.4765808693452255,
+        -1.0986122886681098,
+        2.1972245773362196
+      ],
+      "x": [
+        -0.5247059672174064,
+        -0.5185514682402527,
+        -0.2900384882133543
+      ],
+      "nll": 176.69573584349635,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 1.2931877790833823e-07
+    },
+    {
+      "initial_x": [
+        -0.5320059854128386,
+        -0.2006706954621511,
+        -2.197224577336219
+      ],
+      "x": [
+        -0.5247059453024799,
+        -0.518551457465143,
+        -0.2900384956113959
+      ],
+      "nll": 176.6957358434964,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "gradient_max_abs": 1.1368683772161603e-06
+    }
+  ],
+  "boundary_checks": [
+    {
+      "model": "MPN0",
+      "loglik": -188.8716195333733
+    },
+    {
+      "model": "MPN1",
+      "loglik": -203.42215182475826
+    }
+  ],
+  "starts_nll_spread": 5.684341886080802e-14,
+  "optimization_bound": false,
+  "interval_valid": true,
+  "primary_se": "model",
+  "success": true,
+  "information_condition": 5.101259304638881,
+  "score_max_abs": 1.3292977811829587e-06,
+  "mu_se_model": 0.09272235008200878,
+  "mu_lo_model": 0.43525340622577635,
+  "mu_hi_model": 0.8044592144473444,
+  "r_se_model": 0.041314886631539725,
+  "r_lo_model": 0.2963540308578661,
+  "r_hi_model": 0.4570108003849237,
+  "dep_se_model": 0.08207335613191805,
+  "dep_lo_model": 0.279466625836793,
+  "dep_hi_model": 0.5907415971426452,
+  "mu_se_cluster": 0.10090693178094395,
+  "mu_lo_cluster": 0.4236124086347192,
+  "mu_hi_cluster": 0.8265659978809725,
+  "r_se_cluster": 0.04196557763937916,
+  "r_lo_cluster": 0.2952183964188109,
+  "r_hi_cluster": 0.4583640405726099,
+  "dep_se_cluster": 0.09411014016565432,
+  "dep_lo_cluster": 0.2604802308819088,
+  "dep_hi_cluster": 0.6138197604162343,
+  "covariance_x_model": [
+    [
+      0.02455402263298644,
+      -0.0011001410340404384,
+      0.01353629874219837
+    ],
+    [
+      -0.0011001410340404384,
+      0.031194666891009394,
+      -0.0019233047962507208
+    ],
+    [
+      0.01353629874219837,
+      -0.0019233047962507208,
+      0.1123899879378142
+    ]
+  ],
+  "covariance_x_cluster": [
+    [
+      0.029080093127227112,
+      -0.00942581172450236,
+      0.020798190360099444
+    ],
+    [
+      -0.009425811724502362,
+      0.032185008814967504,
+      -0.008134764147499375
+    ],
+    [
+      0.020798190360099444,
+      -0.008134764147499375,
+      0.1477733365546408
+    ]
+  ],
+  "superpopulation_estimate": 1.3825631103517468,
+  "superpopulation_lo": 0.9087362083166457,
+  "superpopulation_hi": 2.103449534212296,
+  "seconds": 0.38679906900506467,
+  "analysis": "intercept",
+  "estimand": "visit_abundance_birds_per_point",
+  "delta_aic": 3.271261472186211,
+  "akaike_weight": 0.1630600937341408
+}

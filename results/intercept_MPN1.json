@@ -1,0 +1,176 @@
+{
+  "model": "MPN1",
+  "estimate": 1.100106139947113,
+  "r": 0.08660149597599616,
+  "dep": 1.0,
+  "x": [
+    0.09540666601039301,
+    -2.3558551729703874
+  ],
+  "boundary": null,
+  "loglik": -203.42215182475826,
+  "k": 2,
+  "aic": 410.8443036495165,
+  "cumulative_detection": 0.5957938102023277,
+  "truncation_loglik_change": 0.0,
+  "truncation_max_site_change": 0.0,
+  "attempts": [
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806
+      ],
+      "x": [
+        0.09540666007439562,
+        -2.355855176340094
+      ],
+      "nll": 203.42215182475832,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 8.203714136069919e-08
+    },
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806
+      ],
+      "x": [
+        0.09540666007439562,
+        -2.355855176340094
+      ],
+      "nll": 203.42215182475832,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 8.203714136069919e-08
+    },
+    {
+      "initial_x": [
+        -0.5251364097787802,
+        -0.5185514737407806
+      ],
+      "x": [
+        0.09540666007439562,
+        -2.355855176340094
+      ],
+      "nll": 203.42215182475832,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 8.203714136069919e-08
+    },
+    {
+      "initial_x": [
+        0.03530560090026218,
+        -2.4423470353692043
+      ],
+      "x": [
+        0.09540666751591716,
+        -2.355855171490499
+      ],
+      "nll": 203.42215182475834,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 3.183231456205249e-07
+    },
+    {
+      "initial_x": [
+        -0.38668227201503774,
+        -1.5163474893680886
+      ],
+      "x": [
+        0.09540666444811358,
+        -2.3558551774072467
+      ],
+      "nll": 203.42215182475832,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 1.1226575225009582e-07
+    },
+    {
+      "initial_x": [
+        -0.5344372872853642,
+        0.4054651081081643
+      ],
+      "x": [
+        0.09540666159863712,
+        -2.3558551589901695
+      ],
+      "nll": 203.42215182475832,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 5.386703512840342e-07
+    },
+    {
+      "initial_x": [
+        -0.4765808693452255,
+        -1.0986122886681098
+      ],
+      "x": [
+        0.09540666601039301,
+        -2.3558551729703874
+      ],
+      "nll": 203.42215182475826,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 2.3447910280083303e-07
+    },
+    {
+      "initial_x": [
+        -0.5320059854128386,
+        -0.2006706954621511
+      ],
+      "x": [
+        0.09540665439535148,
+        -2.3558551662744596
+      ],
+      "nll": 203.42215182475826,
+      "optimizer_success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "gradient_max_abs": 1.9423499728683866e-07
+    }
+  ],
+  "boundary_checks": [],
+  "starts_nll_spread": 8.526512829121202e-14,
+  "optimization_bound": false,
+  "interval_valid": true,
+  "primary_se": "model",
+  "success": true,
+  "information_condition": 2.0889571226277988,
+  "score_max_abs": 1.7168986319038293e-06,
+  "mu_se_model": 0.18000637450321402,
+  "mu_lo_model": 0.7982805902480045,
+  "mu_hi_model": 1.516050288499874,
+  "r_se_model": 0.014288990638438685,
+  "r_lo_model": 0.06239142922493344,
+  "r_hi_model": 0.11901346545379254,
+  "mu_se_cluster": 0.1809967886071895,
+  "mu_lo_cluster": 0.7968732380981206,
+  "mu_hi_cluster": 1.518727774115961,
+  "r_se_cluster": 0.018778542867954398,
+  "r_lo_cluster": 0.05619213639749305,
+  "r_hi_cluster": 0.13118011204794516,
+  "covariance_x_model": [
+    [
+      0.026773589021535812,
+      -0.010053107764514214
+    ],
+    [
+      -0.010053107764514214,
+      0.03263110066700753
+    ]
+  ],
+  "covariance_x_cluster": [
+    [
+      0.027069021777831985,
+      -0.015453439260033622
+    ],
+    [
+      -0.015453439260033624,
+      0.05635758821040528
+    ]
+  ],
+  "seconds": 0.3134339550160803,
+  "analysis": "intercept",
+  "estimand": "visit_abundance_birds_per_point",
+  "delta_aic": 54.72409343471003,
+  "akaike_weight": 1.0952346819972547e-12
+}

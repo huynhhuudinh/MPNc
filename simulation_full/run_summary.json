@@ -1,0 +1,29 @@
+{
+  "datasets": 30000,
+  "model_fits": 120000,
+  "successful_fits": 119790,
+  "valid_interval_sets": 116545,
+  "failure_reasons": {
+    "Optimizer, stationarity, or computational-bound criterion failed": 152,
+    "Working profile has no admissible interior maximum": 58
+  },
+  "success_by_model": {
+    "CRTE": {
+      "sum": 29953,
+      "count": 30000
+    },
+    "MPN0": {
+      "sum": 29942,
+      "count": 30000
+    },
+    "MPN1": {
+      "sum": 29903,
+      "count": 30000
+    },
+    "MPNc": {
+      "sum": 29992,
+      "count": 30000
+    }
+  },
+  "max_truncation_loglik_change": 1.1550582712516189e-10
+}

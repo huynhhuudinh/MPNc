@@ -1,0 +1,23 @@
+{
+  "observed": [
+    51,
+    14,
+    10
+  ],
+  "expected": [
+    45.96358147757624,
+    22.41993113452541,
+    6.616487387898357
+  ],
+  "bootstrap_draws": 4999,
+  "bootstrap_seed": 20261012,
+  "likelihood_ratio_bootstrap_p": 0.0222,
+  "total_detections": 75,
+  "r_composition_mle": 0.3731910099084373,
+  "df": 1,
+  "pearson_x2": 5.444260554061232,
+  "pearson_p": 0.019632723921135513,
+  "likelihood_ratio_g2": 5.680983133474575,
+  "likelihood_ratio_p": 0.017149755503633617,
+  "note": "Pooled over observed visits; valid under every candidate because compositions are conditionally independent of latent dependence."
+}

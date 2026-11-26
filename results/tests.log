@@ -1,0 +1,15 @@
+test_all_four_against_original_multinomial_likelihood (test_application.ApplicationTests.test_all_four_against_original_multinomial_likelihood) ... ok
+test_composition_goodness_of_fit (test_application.ApplicationTests.test_composition_goodness_of_fit) ... ok
+test_data_axes_area_join_and_missingness (test_application.ApplicationTests.test_data_axes_area_join_and_missingness) ... ok
+test_homogeneous_equal_intervals_match_simulation_implementation (test_application.ApplicationTests.test_homogeneous_equal_intervals_match_simulation_implementation) ... ok
+test_independent_rda_decoder_matches_normalized_data (test_application.ApplicationTests.test_independent_rda_decoder_matches_normalized_data) ... ok
+test_missing_visit_is_omitted_not_zero_count (test_application.ApplicationTests.test_missing_visit_is_omitted_not_zero_count) ... ok
+test_reject_partial_missing_and_bad_exposure (test_application.ApplicationTests.test_reject_partial_missing_and_bad_exposure) ... ok
+test_simulation_working_profile_is_independence_mle (test_application.ApplicationTests.test_simulation_working_profile_is_independence_mle) ... ok
+test_two_visits_bivariate_poisson_with_area_offsets (test_application.ApplicationTests.test_two_visits_bivariate_poisson_with_area_offsets) ... ok
+test_unequal_intervals_from_ten_minute_probabilities (test_application.ApplicationTests.test_unequal_intervals_from_ten_minute_probabilities) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.390s
+
+OK

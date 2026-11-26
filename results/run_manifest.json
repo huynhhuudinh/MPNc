@@ -1,0 +1,117 @@
+{
+  "completed_utc": "2026-10-12T23:38:15.680819+00:00",
+  "python": "3.12.3",
+  "numpy": "2.2.6",
+  "scipy": "1.16.3",
+  "pandas": "2.3.3",
+  "rda_decoder": "rda_reader",
+  "config": {
+    "starts": 8,
+    "maxiter": 350,
+    "tail": 1e-12,
+    "check_tail": 1e-14,
+    "support_cap": 12000,
+    "mu_min": 0.0001,
+    "mu_max": 500.0,
+    "r_min": 1e-05,
+    "r_max": 0.99999,
+    "dep_min": 0.0001,
+    "dep_max": 0.9999,
+    "hessian_step": 0.0002,
+    "intervals": true,
+    "likelihood_tolerance": 1e-06,
+    "tie_tolerance": 1e-06
+  },
+  "data": {
+    "sites": 43,
+    "visits_per_site": 3,
+    "intervals_minutes": [
+      2.0,
+      3.0,
+      5.0
+    ],
+    "observed_visits": 128,
+    "complete_sites": 42,
+    "missing_visits": [
+      {
+        "point_id": "darty",
+        "visit": 1
+      }
+    ],
+    "count_axis_original": [
+      "point",
+      "interval",
+      "occasion"
+    ],
+    "count_axis_analysis": [
+      "point",
+      "occasion",
+      "interval"
+    ],
+    "alignment_mismatches_corrected": [
+      {
+        "position": 41,
+        "counts_id": "zeala",
+        "covariates_id": "zeal4a"
+      },
+      {
+        "position": 42,
+        "counts_id": "zealb",
+        "covariates_id": "zeala"
+      },
+      {
+        "position": 43,
+        "counts_id": "zeal4a",
+        "covariates_id": "zealb"
+      }
+    ],
+    "counts_per_interval": [
+      51,
+      14,
+      10
+    ],
+    "total_detections": 75,
+    "maximum_visit_total": 3,
+    "plot_area_units": "ha",
+    "sum_plot_area_ha": 23.37,
+    "observed_area_exposure_ha_visits": 69.67999999999999,
+    "spot_patches": 38,
+    "spot_count": 74,
+    "spot_area_ha": 66.69000000000001,
+    "spot_density": 1.1096116359274253
+  },
+  "provenance": {
+    "retrieved_utc": "2026-09-10T23:19:56.365613+00:00",
+    "repository": "https://github.com/cran/AHMbook",
+    "commit": "8c006b16dae02d30a174c0dc754488c542e54b64",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/cran/AHMbook/8c006b16dae02d30a174c0dc754488c542e54b64/data/cswa.rda",
+        "filename": "cswa.rda",
+        "sha256": "cafa6b16e5cab1174fde6fa9195d74bbe47562e570d7727fdd7786d5b27743fa",
+        "bytes": 1946
+      },
+      {
+        "url": "https://raw.githubusercontent.com/cran/AHMbook/8c006b16dae02d30a174c0dc754488c542e54b64/DESCRIPTION",
+        "filename": "DESCRIPTION",
+        "sha256": "46190cb97432907e857e392331d995943dfb566f3e63ee1126e8305e39c0019e",
+        "bytes": 6788
+      },
+      {
+        "url": "https://raw.githubusercontent.com/cran/AHMbook/8c006b16dae02d30a174c0dc754488c542e54b64/man/data_cswa.Rd",
+        "filename": "data_cswa.Rd",
+        "sha256": "df62ecc0afbfd9f369b141cc266cb5b13c02da1ee46b69d5e764bb4c143ee521",
+        "bytes": 3098
+      }
+    ]
+  },
+  "source_hashes": {
+    "run_application.py": "a6a28c519fba12cdb7bbf77d577b0e674b601e9f982c102625c3ed9efe705a36",
+    "build_report.py": "d059aef0d6ee6abbbc510bfa7acb6bc422b59cf8d0fc81b03e496eeaf409e6ff",
+    "rda_reader.py": "dbb984d7738aba047b83fa1640db4516761bdd4e0a17ca21ab7c006b2f784f94",
+    "paper_simulation_outputs.py": "e67ca5617f6c1774585bcc36dd6f047aa8383cb6ae05be4a82fd2096475f2930",
+    "test_application.py": "38d0a855fdf1ce65aa14ec7e24661ef8c24c0dda1272c51e688e6b4a91f94479",
+    "softclosure.py": "bfe234583745f777ede51b68819e13c643b0b0c43b740c192662a72ce0c9aa34"
+  },
+  "all_fits_successful": true
+}

@@ -1,0 +1,44 @@
+nohup: ignoring input
+full: 60 scenarios x 500 replicates; 30000 tasks pending; 0 resumed; 8 workers
+Completed 1/30000; elapsed 0.7s
+Completed 2500/30000; elapsed 105.4s
+Completed 5000/30000; elapsed 236.4s
+Completed 7500/30000; elapsed 363.0s
+Completed 10000/30000; elapsed 496.7s
+Completed 12500/30000; elapsed 641.2s
+Completed 15000/30000; elapsed 750.4s
+Completed 17500/30000; elapsed 890.8s
+Completed 20000/30000; elapsed 1027.9s
+Completed 22500/30000; elapsed 1174.8s
+Completed 25000/30000; elapsed 1309.7s
+Completed 27500/30000; elapsed 1439.1s
+Completed 30000/30000; elapsed 1584.4s
+{
+  "datasets": 30000,
+  "model_fits": 120000,
+  "successful_fits": 119790,
+  "valid_interval_sets": 116545,
+  "failure_reasons": {
+    "Optimizer, stationarity, or computational-bound criterion failed": 152,
+    "Working profile has no admissible interior maximum": 58
+  },
+  "success_by_model": {
+    "CRTE": {
+      "sum": 29953,
+      "count": 30000
+    },
+    "MPN0": {
+      "sum": 29942,
+      "count": 30000
+    },
+    "MPN1": {
+      "sum": 29903,
+      "count": 30000
+    },
+    "MPNc": {
+      "sum": 29992,
+      "count": 30000
+    }
+  },
+  "max_truncation_loglik_change": 1.1550582712516189e-10
+}

@@ -1,0 +1,12 @@
+{
+  "fits_successful": 8,
+  "fits_total": 8,
+  "intervals_available": 8,
+  "optimizer_attempts": 50,
+  "optimizer_attempts_converged": 50,
+  "maximum_absolute_score": 1.7168986319038293e-06,
+  "maximum_start_nll_spread": 1.4210854715202004e-13,
+  "maximum_truncation_loglik_change": 0.0,
+  "manuscript_comparisons": 77,
+  "manuscript_comparisons_matching_rounding": 77
+}
